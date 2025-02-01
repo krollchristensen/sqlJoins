@@ -1,0 +1,44 @@
+1. INNER JOIN
+Øvelse 1: Find karakterer med deres respektive våben
+SELECT c.name AS character_name, w.name AS weapon_name
+FROM Characters c
+-- Matcher karakterer med deres våbenrelationer
+INNER JOIN CharacterWeapons cw ON c.id = cw.character_id 
+-- Matcher relationen med de faktiske våben 
+INNER JOIN Weapons w ON cw.weapon_id = w.id;  
+***************************
+Øvelse 2: Find planeter med karakterer, der bor der
+SELECT p.name AS planet_name, c.name AS character_name
+FROM Planets p
+-- Matcher planeter med karakterernes hjemmeplaneter
+INNER JOIN Characters c ON p.name = c.home_planet;  
+***************************
+2. LEFT JOIN
+Øvelse 1: Find alle karakterer og deres våben (hvis nogen)
+SELECT c.name AS character_name, w.name AS weapon_name
+FROM Characters c
+-- Matcher karakterer med våbenrelationer, men beholder alle karakterer
+LEFT JOIN CharacterWeapons cw ON c.id = cw.character_id  
+-- Matcher relationerne med de faktiske våben
+LEFT JOIN Weapons w ON cw.weapon_id = w.id;  
+
+Øvelse 2: Find alle planeter og de karakterer, der bor der (hvis nogen)
+SELECT p.name AS planet_name, c.name AS character_name
+FROM Planets p
+-- Matcher planeter med karakterernes hjemmeplaneter, men viser også tomme planeter
+LEFT JOIN Characters c ON p.name = c.home_planet;  
+***************************
+3. RIGHT JOIN
+Øvelse 1: Find alle våben og hvem der bruger dem (hvis nogen)
+SELECT c.name AS character_name, w.name AS weapon_name
+FROM Characters c
+-- Matcher karakterer med våbenrelationer, men beholder alle våben
+RIGHT JOIN CharacterWeapons cw ON c.id = cw.character_id  
+-- Matcher relationerne med de faktiske våben
+RIGHT JOIN Weapons w ON cw.weapon_id = w.id;  
+
+Øvelse 2: Find alle karakterer og deres planeter (hvis nogen)
+SELECT c.name AS character_name, p.name AS planet_name
+FROM Characters c
+-- Matcher karakterer med deres hjemmeplaneter, men viser også ubeboede planeter
+RIGHT JOIN Planets p ON c.home_planet = p.name;  
